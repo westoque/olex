@@ -8,25 +8,41 @@ By William Estoque
 
 OLEX is a specification for transferring leads in the internet. OLEX has 3 goals:
 
-- Simple (by having 1 standard mapping that is no longer than 3 levels)
-- Easily Transferrable (just follow standard fields in JSON spec)
-- Extensible (extra fields could be added for different purposes, insurance, real estate, etc)
+**Simple**
 
-This protocol supports leads with as simple as 1 contact to as complex as 1 contact with multiple members
-including vehicles, residences and insurance quotes.
+By having an efficient standard mapping, we can capture a wealth of information
+using just 1 JSON object.
 
-## Simple Format
+**Transferrable**
+
+It should be easy to transfer leads to and from
+different services providers. You can even capture data from a page and convert
+it to an OLEX formatted JSON and send it anywhere.
+
+**Extensible**
+
+Extra fields could be added for different purposes,
+insurance, real estate, etc.
+
+This specification supports leads as simple as one contact to something as complex as one
+contact with multiple members including vehicles, residences and insurance quotes.
+
+In addition, multiple parsers and scrapers can be built to comply with the specification
+and make it even easier to move around leads.
+
+- Email parsers (links here)
+- Page scrapers (links here)
+
+## The Specification
 
 The only fields required for a lead is:
 
 - mainContact
 - source
-- createdAt
-- updatedAt
 
 ```
 {
-  mainContact: <Contact> // required
+  mainContact: <MainContact> // required
   members: [<Contact>]
   vehicles: [<Vehicle>],
   residences: [Residence],
@@ -35,6 +51,24 @@ The only fields required for a lead is:
   tags: [],
   createdAt: "", <----- required to tell how old the lead is
   updatedAt: ""  <----- required to know if the lead has been updated by provider since
+}
+```
+
+### MainContact
+
+```
+{
+  fistName: "Foo",                // optional
+  middleName: "",                 // optional
+  lastName: "Bar",                // optional
+  email: "foo@bar.com",           // required
+  phoneNumber: "+14155552671",    // required (E.164 format)
+
+  // Extensions
+                                  // TODO: More specific but optional. Can duplicate phone
+
+  mobileNumber: ""                // optional
+  landlineNumber: ""              // optional
 }
 ```
 
@@ -47,9 +81,11 @@ The contact model
   fistName: "Foo",                // optional
   middleName: "",                 // optional
   lastName: "Bar",                // optional
-  email: "foo@bar.com",           // required
-  phoneNumber: "222-333-5555",    // required (phoneNumber OR mobileNumber)
-  mobileNumber: "444-555-8888"    // required (phoneNumber OR mobileNumber)
+  email: "foo@bar.com",           // optional
+  phoneNumber: "+14155552671",    // optional E.164 format
+
+  mobileNumber: "+14445558888"    // optional
+  landlineNumber: "+12223334444"  // optional
 }
 ```
 
@@ -59,11 +95,10 @@ The vehicle model
 
 ```
 {
-  year: "",
-  vehicle: "",
-  make: "",
-  model: "",
-  vin: ""
+  year: "2020",
+  make: "Tesla",
+  model: "Y",
+  vin: "VIN12345678"
 }
 ```
 
@@ -99,7 +134,6 @@ The simplest example:
 }
 ```
 
-
 ## Extensions
 
 OLEX can be extended for Insurance, Real Estate, or others.
@@ -117,3 +151,7 @@ OLEX can be extended for Insurance, Real Estate, or others.
   specialty_quotes: {}
 }
 ```
+
+### Contributing
+
+Please file an issue detailing your feedback.
