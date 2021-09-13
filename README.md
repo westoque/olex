@@ -1,6 +1,6 @@
 # OLEX
 
-Open Lead Exchange Protocol.
+Open Lead Exchange
 
 By William Estoque
 
