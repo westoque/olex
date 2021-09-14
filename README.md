@@ -39,10 +39,18 @@ insurance, real estate, etc.
 
 ## The Specification
 
-The only fields required for a lead is:
+The only field required for a lead is:
 
 - mainContact
-- source
+
+```
+{
+  mainContact: <MainContact> // required
+  tags: [],                  // optional, could be added to add metadata. example, `tags: ["facebook"]`
+}
+```
+
+A more complex example
 
 ```
 {
@@ -50,10 +58,9 @@ The only fields required for a lead is:
   members: [<Contact>]
   vehicles: [<Vehicle>],
   residences: [Residence],
-  source: "facebook",
-  tags: [],
-  createdAt: "", <----- recommendation, required to tell how old the lead is
-  updatedAt: ""  <----- recommendation, required to know if the lead has been updated by provider since
+  tags: [],                  // optional, could be added to add metadata. example, `tags: ["facebook"]`
+  createdAt: "",             // recommendation, required to tell how old the lead is
+  updatedAt: ""              // recommendation, required to know if the lead has been updated by provider since
 }
 ```
 
