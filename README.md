@@ -50,7 +50,7 @@ The only field required for a lead is:
 }
 ```
 
-A more complex example
+A more complex structure:
 
 ```
 {
