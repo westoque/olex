@@ -6,12 +6,12 @@ By William Estoque
 
 ## Objectives
 
-OLEX is a specification for transferring leads in the internet.
+OLEX is a modern specification for transferring leads in the internet.
 
 A lead is any contact that is reachable. There is only 1 requirement for a contact,
 a phone number OR an email. The OLEX specification supports modern requirements such as
 phone number DNC (Do Not Call) flags and email unsubscribed flags so you can determine
-an action and be able to the reach out to the lead.
+if can reach out to the lead.
 
 The OLEX specification supports leads as simple as one contact to something as complex as one
 contact with multiple members including vehicles, residences and insurance quotes.
